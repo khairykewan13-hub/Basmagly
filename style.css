@@ -1,0 +1,651 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg-primary: #090d16;
+  --bg-secondary: #0f172a;
+  --bg-card: rgba(15, 23, 42, 0.85);
+  --border-color: rgba(51, 65, 85, 0.5);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent-amber: #f59e0b;
+  --accent-blue: #3b82f6;
+  --accent-emerald: #10b981;
+}
+
+body {
+  font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  direction: rtl;
+  text-align: right;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ==================== HIGH CONTRAST BUTTONS & PILLS ==================== */
+.btn-enter-study {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border: 1px solid #1d4ed8 !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25) !important;
+}
+.btn-enter-study:hover {
+  background-color: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+.btn-enter-study * {
+  color: #ffffff !important;
+}
+
+.btn-ai-pill {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(124, 58, 237, 0.4) !important;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25) !important;
+}
+.btn-ai-pill:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+.btn-ai-pill * {
+  color: #ffffff !important;
+}
+
+.btn-panic-badge {
+  font-weight: 800 !important;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+[data-theme="light"] .btn-panic-badge {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+  border: 1px solid #fcd34d !important;
+}
+[data-theme="light"] .btn-panic-badge:hover {
+  background-color: #f59e0b !important;
+  color: #ffffff !important;
+}
+[data-theme="sepia"] .btn-panic-badge {
+  background-color: #faebd7 !important;
+  color: #7c2d12 !important;
+  border: 1px solid #fdba74 !important;
+}
+[data-theme="sepia"] .btn-panic-badge:hover {
+  background-color: #d97706 !important;
+  color: #ffffff !important;
+}
+[data-theme="dark"] .btn-panic-badge {
+  background-color: rgba(245, 158, 11, 0.18) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+}
+[data-theme="dark"] .btn-panic-badge:hover {
+  background-color: #f59e0b !important;
+  color: #000000 !important;
+}
+
+/* ==================== CARD PILL BADGES (MAX CONTRAST IN ALL THEMES) ==================== */
+.badge-lecture {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.5rem;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+[data-theme="sepia"] .badge-lecture {
+  background-color: #ede2d1;
+  color: #2d261b;
+  border: 1px solid #dacaba;
+}
+[data-theme="dark"] .badge-lecture {
+  background-color: rgba(30, 41, 59, 0.85);
+  color: #e2e8f0;
+  border: 1px solid rgba(51, 65, 85, 0.6);
+}
+
+.badge-section {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.5rem;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+[data-theme="sepia"] .badge-section {
+  background-color: #e3ece3;
+  color: #1e3a1e;
+  border: 1px solid #c4d6c4;
+}
+[data-theme="dark"] .badge-section {
+  background-color: rgba(14, 116, 144, 0.25);
+  color: #38bdf8;
+  border: 1px solid rgba(14, 116, 144, 0.45);
+}
+
+.badge-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.5rem;
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+[data-theme="sepia"] .badge-summary {
+  background-color: #faebd7;
+  color: #7c2d12;
+  border: 1px solid #fed7aa;
+}
+[data-theme="dark"] .badge-summary {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+/* Course code pill */
+.course-code-pill {
+  font-weight: 800;
+}
+[data-theme="light"] .course-code-pill,
+[data-theme="sepia"] .course-code-pill {
+  filter: contrast(1.6) brightness(0.7);
+}
+
+/* Terminal Code Box (Always Dark & Crisp for Syntax Readability) */
+.code-terminal {
+  background-color: #0b0f19 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #1e293b !important;
+  border-radius: 0.85rem;
+}
+.code-terminal pre {
+  color: #38bdf8 !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
+/* ==================== THEME SYSTEM OVERRIDES ==================== */
+
+/* --- 1. LIGHT MODE --- */
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+}
+
+[data-theme="light"] body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .glass-panel,
+[data-theme="light"] .theme-card,
+[data-theme="light"] .bg-slate-900,
+[data-theme="light"] .bg-slate-950,
+[data-theme="light"] .bg-slate-900\/60,
+[data-theme="light"] .bg-slate-900\/80,
+[data-theme="light"] .bg-slate-900\/90,
+[data-theme="light"] .bg-slate-950\/80 {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Inner panels / headers */
+[data-theme="light"] .bg-slate-800,
+[data-theme="light"] .bg-slate-800\/80 {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Headings & Text */
+[data-theme="light"] .text-white,
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .text-slate-200,
+[data-theme="light"] .text-slate-300 {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .text-slate-400 {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .text-slate-500 {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .border-slate-800,
+[data-theme="light"] .border-slate-700,
+[data-theme="light"] .border-slate-700\/80,
+[data-theme="light"] .border-slate-700\/50,
+[data-theme="light"] .border-slate-700\/60 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Inputs & Forms */
+[data-theme="light"] input,
+[data-theme="light"] select,
+[data-theme="light"] textarea {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* AI Summary Boxes in Light Mode */
+[data-theme="light"] .ai-box-summary {
+  background-color: #faf5ff !important;
+  border-color: #d8b4fe !important;
+  color: #1e1b4b !important;
+}
+[data-theme="light"] .ai-box-summary * {
+  color: #3b0764 !important;
+}
+
+[data-theme="light"] .ai-box-points {
+  background-color: #eff6ff !important;
+  border-color: #bfdbfe !important;
+  color: #172554 !important;
+}
+[data-theme="light"] .ai-box-points * {
+  color: #1e3a8a !important;
+}
+
+[data-theme="light"] .ai-box-traps {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+  color: #451a03 !important;
+}
+[data-theme="light"] .ai-box-traps * {
+  color: #78350f !important;
+}
+
+/* Amber / Orange / Pill elements high contrast in Light Mode */
+[data-theme="light"] .text-amber-300,
+[data-theme="light"] .text-amber-400,
+[data-theme="light"] .text-amber-500 {
+  color: #92400e !important;
+}
+[data-theme="light"] .text-amber-600,
+[data-theme="light"] .text-amber-700 {
+  color: #78350f !important;
+}
+[data-theme="light"] .bg-amber-500\/10,
+[data-theme="light"] .bg-amber-500\/15,
+[data-theme="light"] .bg-amber-500\/20,
+[data-theme="light"] .bg-amber-500\/30 {
+  background-color: #fef3c7 !important;
+  border-color: #fde68a !important;
+  color: #92400e !important;
+}
+
+/* --- 2. SEPIA / READING MODE --- */
+[data-theme="sepia"] {
+  --bg-primary: #fcf8ee;
+  --bg-secondary: #f6efe2;
+  --bg-card: #f8f3e6;
+  --border-color: #e7dac3;
+  --text-primary: #2d261b;
+  --text-secondary: #74634f;
+}
+
+[data-theme="sepia"] body {
+  background-color: #fbf7ee !important;
+  color: #2d261b !important;
+}
+
+[data-theme="sepia"] .glass-panel,
+[data-theme="sepia"] .theme-card,
+[data-theme="sepia"] .bg-slate-900,
+[data-theme="sepia"] .bg-slate-950,
+[data-theme="sepia"] .bg-slate-900\/60,
+[data-theme="sepia"] .bg-slate-900\/80,
+[data-theme="sepia"] .bg-slate-900\/90,
+[data-theme="sepia"] .bg-slate-950\/80 {
+  background: #f5ece0 !important;
+  color: #2d261b !important;
+  border-color: #e5d7c3 !important;
+  box-shadow: 0 4px 20px -2px rgba(100, 80, 50, 0.08) !important;
+}
+
+[data-theme="sepia"] .bg-slate-800,
+[data-theme="sepia"] .bg-slate-800\/80 {
+  background: #ede2d1 !important;
+  color: #2d261b !important;
+  border-color: #dacaba !important;
+}
+
+[data-theme="sepia"] .text-white,
+[data-theme="sepia"] h1,
+[data-theme="sepia"] h2,
+[data-theme="sepia"] h3,
+[data-theme="sepia"] h4 {
+  color: #2d261b !important;
+}
+
+[data-theme="sepia"] .text-slate-200,
+[data-theme="sepia"] .text-slate-300 {
+  color: #4a3e2e !important;
+}
+
+[data-theme="sepia"] .text-slate-400 {
+  color: #635443 !important;
+}
+
+[data-theme="sepia"] .text-slate-500 {
+  color: #8c775e !important;
+}
+
+[data-theme="sepia"] .border-slate-800,
+[data-theme="sepia"] .border-slate-700,
+[data-theme="sepia"] .border-slate-700\/80,
+[data-theme="sepia"] .border-slate-700\/50,
+[data-theme="sepia"] .border-slate-700\/60 {
+  border-color: #e5d7c3 !important;
+}
+
+[data-theme="sepia"] input,
+[data-theme="sepia"] select,
+[data-theme="sepia"] textarea {
+  background: #fdfaf3 !important;
+  color: #2d261b !important;
+  border-color: #dacaba !important;
+}
+
+/* AI Summary Boxes in Sepia */
+[data-theme="sepia"] .ai-box-summary {
+  background-color: #f7eff9 !important;
+  border-color: #dfc8e3 !important;
+  color: #3b0764 !important;
+}
+[data-theme="sepia"] .ai-box-summary * {
+  color: #3b0764 !important;
+}
+
+[data-theme="sepia"] .ai-box-points {
+  background-color: #eff3f9 !important;
+  border-color: #cbd8e7 !important;
+  color: #1e3a8a !important;
+}
+[data-theme="sepia"] .ai-box-points * {
+  color: #1e3a8a !important;
+}
+
+[data-theme="sepia"] .ai-box-traps {
+  background-color: #faf2e3 !important;
+  border-color: #e5d1a8 !important;
+  color: #78350f !important;
+}
+[data-theme="sepia"] .ai-box-traps * {
+  color: #78350f !important;
+}
+
+/* Amber / Orange / Pill elements high contrast in Sepia Mode */
+[data-theme="sepia"] .text-amber-300,
+[data-theme="sepia"] .text-amber-400,
+[data-theme="sepia"] .text-amber-500 {
+  color: #7c2d12 !important;
+}
+[data-theme="sepia"] .text-amber-600,
+[data-theme="sepia"] .text-amber-700 {
+  color: #71250b !important;
+}
+[data-theme="sepia"] .bg-amber-500\/10,
+[data-theme="sepia"] .bg-amber-500\/15,
+[data-theme="sepia"] .bg-amber-500\/20,
+[data-theme="sepia"] .bg-amber-500\/30 {
+  background-color: #faebd7 !important;
+  border-color: #fed7aa !important;
+  color: #7c2d12 !important;
+}
+
+/* --- 3. DARK MODE (AI BOXES) --- */
+[data-theme="dark"] .ai-box-summary {
+  background-color: rgba(124, 58, 237, 0.12) !important;
+  border-color: rgba(124, 58, 237, 0.35) !important;
+}
+[data-theme="dark"] .ai-box-summary .box-heading {
+  color: #c084fc !important;
+}
+[data-theme="dark"] .ai-box-summary p {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .ai-box-points {
+  background-color: rgba(37, 99, 235, 0.12) !important;
+  border-color: rgba(37, 99, 235, 0.35) !important;
+}
+[data-theme="dark"] .ai-box-points .box-heading {
+  color: #60a5fa !important;
+}
+[data-theme="dark"] .ai-box-points * {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .ai-box-traps {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+}
+[data-theme="dark"] .ai-box-traps .box-heading {
+  color: #fbbf24 !important;
+}
+[data-theme="dark"] .ai-box-traps p {
+  color: #e2e8f0 !important;
+}
+
+/* Active Theme Toggle Button */
+.theme-btn-active {
+  background-color: #f59e0b !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4) !important;
+}
+
+/* Glassmorphism Cards */
+.glass-panel {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.7);
+}
+
+/* Search Chips */
+.search-chip {
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.search-chip:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  color: var(--text-primary);
+}
+.search-chip.active-chip {
+  background: #f59e0b;
+  color: #000000;
+  border-color: #f59e0b;
+}
+
+/* Active Subject Tab */
+.active-subject-tab {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Switch UI */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: .3s;
+  border-radius: 24px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #f59e0b;
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Smooth fade-in */
+.fade-in {
+  animation: fadeIn 0.25s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================== LIGHT & SEPIA: GLOBAL ELEMENT OVERRIDES ==================== */
+/* Make sure ALL text inside cards/panels is readable in light mode */
+[data-theme="light"] span,
+[data-theme="light"] p,
+[data-theme="light"] label,
+[data-theme="light"] small,
+[data-theme="light"] .text-xs,
+[data-theme="light"] .text-sm {
+  color: inherit;
+}
+
+/* Search chip in light mode */
+[data-theme="light"] .search-chip {
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+  border-color: #cbd5e1 !important;
+}
+[data-theme="light"] .search-chip:hover {
+  border-color: #f59e0b !important;
+  color: #0f172a !important;
+}
+
+/* Search chip in sepia mode */
+[data-theme="sepia"] .search-chip {
+  background: #ede2d1 !important;
+  color: #4a3e2e !important;
+  border-color: #dacaba !important;
+}
+
+/* Pomodoro status badge in light/sepia */
+[data-theme="light"] .timer-status-text,
+[data-theme="light"] .pomo-status-badge {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+  border-color: #fde68a !important;
+}
+[data-theme="sepia"] .timer-status-text,
+[data-theme="sepia"] .pomo-status-badge {
+  background-color: #faebd7 !important;
+  color: #7c2d12 !important;
+  border-color: #fed7aa !important;
+}
+
+/* Progress bar text in light/sepia */
+[data-theme="light"] #stat-percentage,
+[data-theme="light"] #stat-completed-materials,
+[data-theme="light"] #subj-progress-percentage {
+  color: #92400e !important;
+}
+[data-theme="sepia"] #stat-percentage,
+[data-theme="sepia"] #stat-completed-materials,
+[data-theme="sepia"] #subj-progress-percentage {
+  color: #7c2d12 !important;
+}
+
+/* Pomodoro digits in light/sepia */
+[data-theme="light"] #widget-timer-display,
+[data-theme="light"] #timer-modal-display,
+[data-theme="light"] #pv-pomo-digits {
+  color: #92400e !important;
+}
+[data-theme="sepia"] #widget-timer-display,
+[data-theme="sepia"] #timer-modal-display,
+[data-theme="sepia"] #pv-pomo-digits {
+  color: #7c2d12 !important;
+}
+
+/* blue pill text in light/sepia for sections badge */
+[data-theme="light"] .text-cyan-400,
+[data-theme="light"] .text-sky-400,
+[data-theme="light"] .text-blue-400 {
+  color: #1d4ed8 !important;
+}
+[data-theme="sepia"] .text-cyan-400,
+[data-theme="sepia"] .text-sky-400,
+[data-theme="sepia"] .text-blue-400 {
+  color: #1e3a8a !important;
+}

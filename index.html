@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بصمجلي 🚀 | Basmagly — البوابة الأكاديمية الذكية</title>
+  <meta name="description" content="منصة بصمجلي الأكاديمية — تجميعة شاملة لكل محاضرات، سكاشن، ملخصات، وكبسولات مواد الفرقة الثانية">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="selection:bg-amber-500 selection:text-black">
+
+  <!-- ==================== FIXED TOP-LEFT THEME SWITCHER ==================== -->
+  <div class="fixed top-4 left-4 z-50 flex items-center p-1.5 rounded-2xl glass-panel shadow-2xl border border-slate-700/80 backdrop-blur-xl">
+    <div class="flex items-center gap-1 text-xs font-bold">
+      <button data-theme-btn="dark" class="px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1" title="الوضع الداكن">
+        <span>🌙</span>
+        <span class="hidden sm:inline">داكن</span>
+      </button>
+      <button data-theme-btn="light" class="px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1" title="الوضع الفاتح">
+        <span>☀️</span>
+        <span class="hidden sm:inline">فاتح</span>
+      </button>
+      <button data-theme-btn="sepia" class="px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1" title="وضع القراءة الهادئ">
+        <span>📖</span>
+        <span class="hidden sm:inline">قراءة</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== FIXED TOP-RIGHT LIVE 12H CLOCK & POMODORO PILL ==================== -->
+  <div class="fixed top-4 right-4 z-50 flex items-center gap-2">
+    <!-- 12-Hour Live Clock -->
+    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-2xl glass-panel text-xs font-bold text-amber-400 border border-slate-700/80 shadow-xl backdrop-blur-xl">
+      <span>🕒</span>
+      <span id="live-12h-clock">12:00 ص</span>
+    </div>
+
+    <!-- Quick Pomodoro Header Pill -->
+    <button id="timer-header-trigger" class="flex items-center gap-2 px-3.5 py-1.5 rounded-2xl glass-panel text-xs font-bold text-white border border-slate-700/80 hover:border-amber-500/50 transition-all shadow-xl backdrop-blur-xl">
+      <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+      <span>⏱️ مؤقت المذاكرة</span>
+      <span id="timer-display" class="font-mono text-amber-300">25:00</span>
+    </button>
+  </div>
+
+  <!-- ==================== MAIN PAGE CONTAINER ==================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 space-y-10">
+
+    <!-- ==================== 1. BIG WIDE HERO BRAND BANNER ==================== -->
+    <section class="relative overflow-hidden rounded-3xl p-6 sm:p-10 md:p-12 bg-gradient-to-br from-slate-900 via-indigo-950/60 to-slate-900 border-2 border-slate-700/80 shadow-2xl backdrop-blur-xl">
+      <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-right">
+        
+        <!-- Brand Title & Details -->
+        <div class="space-y-4 max-w-3xl">
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+            <span class="px-3 py-1 rounded-full text-xs font-black bg-amber-500 text-black shadow-lg">🚀 Basmagly Portal</span>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-800 text-amber-300 border border-slate-700">الفرقة الثانية (2026-2027) · الترم الأول</span>
+            <div id="sync-status-badge" class="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 cursor-pointer" onclick="document.getElementById('sync-modal').classList.remove('hidden')">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>متزامن مع الدرايف 🟢</span>
+            </div>
+          </div>
+
+          <!-- Massive Title -->
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none">
+            Basmagly <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-rose-400 to-purple-400">بـصـمـجـلـي</span>
+          </h1>
+          <p class="text-base sm:text-lg text-slate-300 font-medium leading-relaxed max-w-2xl">
+            The Core of Every Study — بوابتك الذكية للمذاكرة السريعة، تجميعة شاملة لكل المحاضرات والسكاشن، كبسولات ليلة الامتحان، ومحاكي امتحانات تفاعلي لضمان الامتياز.
+          </p>
+
+          <!-- Action Buttons Bar -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+            <a href="#courses-section" class="px-6 py-3 rounded-2xl font-bold text-sm bg-gradient-to-r from-amber-500 to-rose-500 text-white shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+              <span>تصفح المواد والمذاكرة 📚</span>
+              <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+
+            <a href="#pomodoro-section" class="px-5 py-3 rounded-2xl font-bold text-sm bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 transition-all flex items-center gap-2">
+              <span>⏱️ مؤقت بومودورو للتركيز</span>
+            </a>
+
+            <button onclick="openExamSimulator()" class="px-5 py-3 rounded-2xl font-bold text-sm bg-purple-600/30 hover:bg-purple-600/40 text-purple-200 border border-purple-500/40 transition-all flex items-center gap-2">
+              <span>🎯 محاكي الميدتيرم التفاعلي</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mega VIP Card (Midterm Mega Doc) -->
+        <div class="w-full lg:w-96 rounded-2xl p-5 bg-slate-900/90 border border-amber-500/40 shadow-xl backdrop-blur-md text-right space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-black bg-rose-500 text-white animate-pulse">VIP ليلة الامتحان 🚨</span>
+            <span class="text-xs text-amber-300 font-bold">كل ما يخص MID 1</span>
+          </div>
+          <h3 class="text-sm font-bold text-white leading-snug">
+            الملف الشامل المجمع لجميع مواد الميدتيرم، نماذج الإجابات، والكبسولات المركزة
+          </h3>
+          <p class="text-[11px] text-slate-400">محدث ومربوط بمجلد جوجل درايف الخاص بالدفعة</p>
+          <a href="https://drive.google.com/drive/folders/1ypkhtis6u3RC2S6Ie8C0ER2bPxV-Gzza?usp=drive_link" target="_blank" 
+             class="w-full py-2.5 rounded-xl font-bold text-xs bg-amber-500 hover:bg-amber-400 text-black transition-all flex items-center justify-center gap-1.5 shadow-md">
+            <span>فتح كبسولة الميدتيرم في الدرايف ↗</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== CLEAR & DEDICATED POMODORO TIMER CARD ==================== -->
+    <section id="pomodoro-section" class="glass-panel rounded-3xl p-6 sm:p-8 border-2 border-amber-500/40 shadow-xl">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Explanation & Info -->
+        <div class="space-y-2 text-center md:text-right">
+          <div class="flex items-center justify-center md:justify-start gap-2">
+            <span class="text-3xl">⏱️</span>
+            <div>
+              <h2 class="text-xl font-black text-white">مؤقت بومودورو للتركيز والمذاكرة (Pomodoro Timer)</h2>
+              <span class="timer-status-text px-3 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                جلسة تركيز ومذاكرة 🧠 (25 دقيقة)
+              </span>
+            </div>
+          </div>
+          
+          <p class="text-xs text-slate-300 max-w-xl leading-relaxed">
+            <strong>طريقة استخدامه وكيف يفيدك؟</strong> اضغط على <strong>"ابدأ الجلسة"</strong> وتفرغ تماماً لمذاكرة أي محاضرة بدون فتح سوشيال ميديا لمدة <strong>25 دقيقة</strong> متواصلة. بعد انتهاء الوقت سيرن المنبه تلقائياً ليعطيك <strong>5 دقائق راحة</strong> لتجديد نشاطك ثم تكرر الجلسة.
+          </p>
+        </div>
+
+        <!-- Timer Controls Box -->
+        <div class="w-full md:w-auto flex flex-col items-center bg-slate-900/80 p-5 rounded-2xl border border-slate-700 space-y-4">
+          <!-- Big Digits Display -->
+          <div id="widget-timer-display" class="text-5xl font-black text-amber-400 font-mono tracking-widest drop-shadow">
+            25:00
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="w-48 h-2 bg-slate-800 rounded-full overflow-hidden">
+            <div id="timer-progress-bar" class="h-full bg-amber-500 rounded-full transition-all duration-1000" style="width: 0%;"></div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex items-center gap-2">
+            <button class="timer-toggle-action px-5 py-2.5 rounded-xl font-black text-xs bg-amber-500 hover:bg-amber-400 text-black shadow-md transition-all flex items-center gap-1.5">
+              <span>ابدأ الجلسة ▶️</span>
+            </button>
+            <button class="timer-reset-action px-3 py-2.5 rounded-xl font-bold text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all" title="إعادة التعيين لـ 25 دقيقة">
+              🔄 تصفير
+            </button>
+            <button class="timer-break-action px-3 py-2.5 rounded-xl font-bold text-xs bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 transition-all" title="أخذ استراحة 5 دقائق">
+              ☕ استراحة (5د)
+            </button>
+            <button class="timer-focus-action px-3 py-2.5 rounded-xl font-bold text-xs bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 transition-all" title="العودة لوضع التركيز">
+              🧠 تركيز (25د)
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 2. SUBJECTS CARDS (المواد الدراسية مباشرة بعد البانر) ==================== -->
+    <section id="courses-section" class="space-y-5">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">📚</span>
+            <h2 class="text-2xl font-black text-white">المواد الدراسية (8 مواد)</h2>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">منظمة وسهلة للمذاكرة</span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">اضغط "ادخل المذاكرة" للوصول للمحاضرات والسكاشن، أو "طوارئ ⚡" للكبسولات المباشرة</p>
+        </div>
+
+        <a href="https://drive.google.com/drive/folders/1ypkhtis6u3RC2S6Ie8C0ER2bPxV-Gzza?usp=drive_link" target="_blank" 
+           class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all flex items-center gap-1.5">
+          <span>مجلد الدرايف الكامل ↗</span>
+        </a>
+      </div>
+
+      <!-- 8 Subject Cards Container -->
+      <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- ==================== 3. ACADEMIC PROGRESS (معدل الإنجاز الأكاديمي بعد المواد) ==================== -->
+    <section class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-800 space-y-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">📊</span>
+            <h2 class="text-xl font-black text-white">معدل الإنجاز الأكاديمي الشامل</h2>
+          </div>
+          <p class="text-xs text-slate-400 mt-0.5">تتبع المحاضرات والسكاشن التي أنهيتها في جميع المواد واحفظ تقدمك في المتصفح</p>
+        </div>
+        
+        <!-- Stats Badges -->
+        <div class="flex items-center gap-3 text-xs font-bold">
+          <div class="px-3.5 py-2 rounded-xl bg-slate-800 border border-slate-700 text-slate-300">
+            <span>المكتمل: </span>
+            <span id="stat-completed-materials" class="text-amber-400 font-black text-sm">0</span>
+            <span class="text-slate-500">/</span>
+            <span id="stat-total-materials" class="text-slate-300 text-sm">0</span>
+          </div>
+          <div class="px-3.5 py-2 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 text-sm font-black">
+            <span id="stat-percentage">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Progress Bar -->
+      <div class="w-full h-3.5 bg-slate-800/80 rounded-full overflow-hidden p-0.5 border border-slate-700/50">
+        <div id="stat-progress-bar" class="h-full rounded-full bg-gradient-to-r from-amber-500 via-rose-500 to-purple-500 transition-all duration-700" style="width: 0%;"></div>
+      </div>
+
+      <div class="flex items-center justify-between text-xs text-slate-400 pt-1">
+        <span>💡 علم على أي محاضرة أو شيت تنتهي منه داخل صفحة المادة ليتم تحديث العداد تلقائياً</span>
+        <button onclick="document.getElementById('backup-modal').classList.remove('hidden')" class="text-amber-400 hover:underline font-bold">
+          حفظ نسخة احتياطية من تقدمك 💾
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== 4. INTERACTIVE KERNAL-STYLE TOOLS ==================== -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      
+      <!-- Interactive Tool 1: Midterm Exam Simulator -->
+      <div class="glass-panel rounded-3xl p-6 border border-purple-500/30 flex flex-col justify-between space-y-4 hover:border-purple-500/50 transition-all">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl border border-purple-500/30">
+              🎯
+            </div>
+            <div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">تفاعلي · على طريقة Kernal</span>
+              <h3 class="text-lg font-bold text-white mt-0.5">محاكي امتحانات الميدتيرم (Exam Simulator)</h3>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            اختبر نفسك في أسئلة الميدتيرم والفاينال السابقة لمواد الترم مع تصحيح فوري، مؤقت، وتفسير كامل باللغتين العربية والإنجليزية.
+          </p>
+        </div>
+        <button onclick="openExamSimulator()" class="w-full py-3 rounded-2xl font-bold text-xs bg-purple-600 hover:bg-purple-500 text-white shadow-lg transition-all flex items-center justify-center gap-2">
+          <span>بدء اختبار تجريبي الآن 🚀</span>
+        </button>
+      </div>
+
+      <!-- Interactive Tool 2: Target Grade & Coursework Calculator -->
+      <div class="glass-panel rounded-3xl p-6 border border-amber-500/30 flex flex-col justify-between space-y-4 hover:border-amber-500/50 transition-all">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
+              🧮
+            </div>
+            <div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">حاسبة درجات ذكية</span>
+              <h3 class="text-lg font-bold text-white mt-0.5">حاسبة أعمال السنة وهدف الفاينال</h3>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            ادخل درجاتك في الميدتيرم والعملي والكويزات، وحدد التقدير الذي تطمح له (A+ أو A أو B) لتعرف بالضبط كم تحتاج في ورقة الفاينال.
+          </p>
+        </div>
+        <button onclick="document.getElementById('calculator-modal').classList.remove('hidden')" class="w-full py-3 rounded-2xl font-bold text-xs bg-amber-500 hover:bg-amber-400 text-black shadow-lg transition-all flex items-center justify-center gap-2">
+          <span>افتح حاسبة التقديرات 🎯</span>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ==================== 5. FILTERABLE RESOURCE LIBRARY & INSTANT SEARCH ==================== -->
+    <section id="search-results-section" class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-800 space-y-5">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl">⚡</span>
+            <h2 class="text-lg font-bold text-white">مكتبة المصادر والبحث الفوري</h2>
+          </div>
+          <p class="text-xs text-slate-400 mt-0.5">ابحث عن أي محاضرة، شيت، كود، أو ملخص بضغطة زر (اضغط <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-amber-400 font-mono text-[10px]">/</kbd> للبحث)</p>
+        </div>
+        
+        <!-- Search Input -->
+        <div class="relative w-full md:w-80">
+          <input type="text" id="global-search-input" placeholder="ابحث باسم الملف أو المادة..." 
+                 class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 pl-10 text-xs font-medium text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-all">
+          <span class="absolute left-3 top-3 text-slate-500 text-xs">🔍</span>
+        </div>
+      </div>
+
+      <!-- Filter Chips -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button data-search-filter="all" class="search-chip active-chip">الكل</button>
+        <button data-search-filter="basmaga" class="search-chip text-amber-400 border-amber-500/30">🔥 كبسولات البصمجة</button>
+        <button data-search-filter="lectures" class="search-chip">📘 المحاضرات</button>
+        <button data-search-filter="sections" class="search-chip">💻 السكاشن والعملي</button>
+        <button data-search-filter="sheets" class="search-chip">📝 الشيتات والتكليفات</button>
+        <button data-search-filter="exams" class="search-chip">📂 الامتحانات السابقة</button>
+        <button data-search-filter="videos" class="search-chip">🎥 شروحات الفيديو</button>
+      </div>
+
+      <!-- Results List Container -->
+      <div id="search-results-list" class="space-y-2.5 max-h-[450px] overflow-y-auto pr-1">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="mt-16 border-t border-slate-800/80 bg-slate-950/80 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-right">
+      <div>
+        <div class="flex items-center justify-center md:justify-start gap-2 mb-1">
+          <span class="text-lg font-black text-white">Basmagly 🚀</span>
+          <span class="text-xs text-slate-400">· The core of every study</span>
+        </div>
+        <p class="text-xs text-slate-500">تم التطوير لتسهيل المذاكرة وتحقيق الامتياز لطلاب الفرقة الثانية (2026-2027) 🎓</p>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs">
+        <button onclick="document.getElementById('backup-modal').classList.remove('hidden')" class="text-slate-400 hover:text-amber-400 transition-colors">النسخة الاحتياطية</button>
+        <span class="text-slate-700">|</span>
+        <button onclick="document.getElementById('sync-modal').classList.remove('hidden')" class="text-slate-400 hover:text-amber-400 transition-colors">مزامنة الدرايف</button>
+        <span class="text-slate-700">|</span>
+        <a href="https://drive.google.com/drive/folders/1ypkhtis6u3RC2S6Ie8C0ER2bPxV-Gzza?usp=drive_link" target="_blank" class="text-amber-400 hover:underline">مجلد جوجل درايف ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE MIDTERM EXAM SIMULATOR MODAL (KERNAL STYLE) ==================== -->
+  <div id="simulator-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+    <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 sm:p-8 border border-purple-500/40 shadow-2xl relative fade-in my-8 space-y-6">
+      <button onclick="document.getElementById('simulator-modal').classList.add('hidden')" class="absolute top-5 left-5 text-slate-400 hover:text-white text-lg">✕</button>
+
+      <div class="flex items-center gap-3.5 border-b border-slate-800 pb-4">
+        <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl border border-purple-500/30">
+          🎯
+        </div>
+        <div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300">محاكي امتحانات تفاعلي</span>
+          <h3 class="text-xl font-bold text-white mt-0.5">اختبار تجريبي سريع لمواد الميدتيرم</h3>
+        </div>
+      </div>
+
+      <!-- Simulator Container -->
+      <div id="sim-content" class="space-y-4">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== POMODORO TIMER MODAL ==================== -->
+  <div id="timer-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="glass-panel w-full max-w-sm rounded-3xl p-6 border border-slate-700 shadow-2xl text-center relative fade-in">
+      <button id="timer-modal-close" class="absolute top-4 left-4 text-slate-400 hover:text-white text-lg">✕</button>
+      
+      <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mx-auto mb-3 border border-amber-500/30">
+        ⏱️
+      </div>
+      <h3 class="text-lg font-bold text-white mb-1">مؤقت المذاكرة والتركيز (بومودورو)</h3>
+      <div class="mb-4">
+        <span class="timer-status-text px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">جلسة تركيز 🧠 (25 دقيقة)</span>
+      </div>
+
+      <div id="timer-modal-display" class="text-5xl font-black text-amber-400 font-mono tracking-wider my-6">
+        25:00
+      </div>
+
+      <div class="flex items-center justify-center gap-2 mb-4">
+        <button class="timer-toggle-action flex-1 py-3 px-4 rounded-xl font-bold text-xs bg-amber-500 text-black shadow-lg transition-all hover:opacity-95">
+          <span>ابدأ الجلسة ▶️</span>
+        </button>
+        <button class="timer-reset-action p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700" title="إعادة الضبط">
+          🔄
+        </button>
+      </div>
+
+      <div class="flex items-center justify-center gap-2 text-xs">
+        <button class="timer-focus-action text-amber-400 hover:underline">وضع التركيز (25د)</button>
+        <span class="text-slate-600">·</span>
+        <button class="timer-break-action text-emerald-400 hover:underline">وضع الاستراحة (5د)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CALCULATOR MODAL ==================== -->
+  <div id="calculator-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm overflow-y-auto">
+    <div class="glass-panel w-full max-w-lg rounded-3xl p-6 border border-slate-700 shadow-2xl relative fade-in my-8">
+      <button onclick="document.getElementById('calculator-modal').classList.add('hidden')" class="absolute top-4 left-4 text-slate-400 hover:text-white text-lg">✕</button>
+      
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl border border-purple-500/30">
+          🎯
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white">حاسبة درجات الفاينال المستهدفة</h3>
+          <p class="text-xs text-slate-400">احسب أعمال سنتك واعرف كم درجة تحتاج في الفاينال لضمان A أو A+</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3.5 mb-5 text-right">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">درجة الميدتيرم (من 20):</label>
+          <input type="number" id="calc-midterm-mark" value="17" min="0" max="100" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white font-bold focus:outline-none focus:border-purple-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">درجة العملي / المعمل (من 10):</label>
+          <input type="number" id="calc-practical-mark" value="10" min="0" max="100" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white font-bold focus:outline-none focus:border-purple-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">الكويزات / التكليفات (من 10):</label>
+          <input type="number" id="calc-quizzes-mark" value="9" min="0" max="100" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white font-bold focus:outline-none focus:border-purple-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">الدرجة العظمى لورقة الفاينال:</label>
+          <input type="number" id="calc-finalmax" value="60" min="1" max="150" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white font-bold focus:outline-none focus:border-purple-500">
+        </div>
+        <div class="col-span-2">
+          <label class="block text-xs font-semibold text-slate-300 mb-1">التقدير المستهدف الذي ترغب في تحقيقه:</label>
+          <select id="calc-target-grade" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white font-bold focus:outline-none focus:border-purple-500">
+            <option value="A+">امتياز مرتفع A+ (90% فأعلى)</option>
+            <option value="A" selected>امتياز A (85% فأعلى)</option>
+            <option value="B+">جيد جداً مرتفع B+ (80% فأعلى)</option>
+            <option value="B">جيد جداً B (75% فأعلى)</option>
+            <option value="C+">جيد مرتفع C+ (70% فأعلى)</option>
+            <option value="C">جيد C (65% فأعلى)</option>
+            <option value="D">مقبول D (60% فأعلى)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="rounded-2xl p-4 bg-slate-900/90 border border-purple-500/30 text-center">
+        <span class="text-xs text-slate-400">مجموع أعمال سنتك الحالي: <strong id="calc-current-total" class="text-purple-300 font-bold">36 من 40</strong></span>
+        <div class="my-3">
+          <div class="text-xs text-slate-300 mb-1">المطلوب في امتحان الفاينال:</div>
+          <div id="calc-needed-score" class="text-4xl font-black text-amber-400 font-mono">49 من 60</div>
+          <div id="calc-needed-percentage" class="text-xs text-slate-400 mt-1">(مطلوب 82% من ورقة الفاينال)</div>
+        </div>
+
+        <div class="mt-3 pt-3 border-t border-slate-800">
+          <div id="calc-status-badge" class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 mb-2">
+            فرصة ممتازة جداً وممكنة بسهولة 💪
+          </div>
+          <p id="calc-advice-text" class="text-xs text-slate-400 leading-relaxed"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DRIVE SYNC MODAL ==================== -->
+  <div id="sync-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-slate-700 shadow-2xl relative fade-in">
+      <button onclick="document.getElementById('sync-modal').classList.add('hidden')" class="absolute top-4 left-4 text-slate-400 hover:text-white text-lg">✕</button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl border border-emerald-500/30">
+          🔄
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white">المزامنة الحية مع جوجل درايف</h3>
+          <p class="text-xs text-slate-400">أي ملف جديد تضعه على الدرايف يظهر تلقائياً بالموقع</p>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-xs text-slate-300">
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5">
+          <p class="font-bold text-amber-300">طريقة تفعيل الرابط التلقائي (Google Apps Script):</p>
+          <p>1. افتح <a href="https://script.google.com" target="_blank" class="text-blue-400 underline">Google Apps Script</a> والصق كود <code class="text-amber-400">Code.gs</code>.</p>
+          <p>2. اضغط <strong>Deploy</strong> ثم <strong>New Deployment</strong> واختر <strong>Web App</strong>.</p>
+          <p>3. اجعل الصلاحية: <strong>Who has access: Anyone</strong> والصق الرابط هنا:</p>
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-1">رابط Web App:</label>
+          <input type="url" id="sync-url-input" placeholder="https://script.google.com/macros/s/.../exec" 
+                 class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-emerald-500 font-mono">
+        </div>
+
+        <button id="sync-save-btn" class="w-full py-2.5 rounded-xl font-bold bg-emerald-500 hover:bg-emerald-600 text-black transition-all">
+          حفظ ومزامنة فورية
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== BACKUP & RESTORE MODAL ==================== -->
+  <div id="backup-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="glass-panel w-full max-w-sm rounded-3xl p-6 border border-slate-700 shadow-2xl text-center relative fade-in">
+      <button onclick="document.getElementById('backup-modal').classList.add('hidden')" class="absolute top-4 left-4 text-slate-400 hover:text-white text-lg">✕</button>
+
+      <div class="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl mx-auto mb-3 border border-blue-500/30">
+        💾
+      </div>
+      <h3 class="text-lg font-bold text-white mb-1">النسخة الاحتياطية ونقل التقدم</h3>
+      <p class="text-xs text-slate-400 mb-5">انقل ملاحظاتك ونسب مذاكرتك بين الموبايل واللابتوب بدون الحاجة لإنشاء حساب</p>
+
+      <div class="space-y-3">
+        <button id="export-backup-btn" class="w-full py-2.5 px-4 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition-all flex items-center justify-center gap-2">
+          <span>تصدير وحفظ ملف المذاكرة (JSON)</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        </button>
+
+        <label class="w-full py-2.5 px-4 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 cursor-pointer transition-all flex items-center justify-center gap-2">
+          <span>استيراد واستعادة من ملف (JSON)</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+          <input type="file" id="import-backup-file" accept=".json" class="hidden">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/ai-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/sync.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Interactive 12-Hour Clock & Simulator Script -->
+  <script>
+    // 12-Hour Live Clock
+    function update12HourClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const ampm = hours >= 12 ? 'م' : 'ص';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      const formatted = `${hours}:${minutes} ${ampm}`;
+      const el = document.getElementById('live-12h-clock');
+      if (el) el.textContent = formatted;
+    }
+    setInterval(update12HourClock, 1000);
+    update12HourClock();
+
+    // Midterm Exam Simulator Logic (Kernal Style)
+    const SIMULATOR_QUESTIONS = [
+      {
+        course: "Data Structure",
+        questionEn: "What is the worst-case time complexity of Binary Search in a sorted array of size N?",
+        questionAr: "ما هو التعقيد الزمني لأسوأ حالة (Worst-case) لخوارزمية البحث الثنائي (Binary Search) في مصفوفة مرتبة؟",
+        options: ["O(1)", "O(N)", "O(log N)", "O(N log N)"],
+        answerIdx: 2,
+        explanationEn: "Binary search cuts the search space in half at each step, resulting in O(log N) time complexity.",
+        explanationAr: "البحث الثنائي يقوم بقسمة مجال البحث إلى النصف في كل خطوة، لذلك التعقيد الزمني هو O(log N)."
+      },
+      {
+        course: "Logic Design",
+        questionEn: "How many cells are there in a 4-variable Karnaugh Map (K-Map)?",
+        questionAr: "كم عدد الخلايا الموجودة في خريطة كارنوف (K-Map) لـ 4 متغيرات؟",
+        options: ["8 cells", "16 cells", "32 cells", "4 cells"],
+        answerIdx: 1,
+        explanationEn: "Number of cells in a K-map is 2^n. For 4 variables: 2^4 = 16 cells.",
+        explanationAr: "عدد الخلايا في K-map يحسب بالقانون 2 أس n، وبالتالي لـ 4 متغيرات: 2^4 = 16 خلية."
+      },
+      {
+        course: "Differential Equations",
+        questionEn: "The differential equation (dy/dx) + P(x)y = Q(x) is classified as:",
+        questionAr: "المعادلة التفاضلية (dy/dx) + P(x)y = Q(x) تصنف كـ:",
+        options: ["First-order Linear ODE", "Second-order ODE", "Exact ODE only", "Separable only"],
+        answerIdx: 0,
+        explanationEn: "This is the standard general form of a first-order linear ordinary differential equation.",
+        explanationAr: "هذه هي الصيغة القياسية العامة للمعادلة التفاضلية الخطية من الرتبة الأولى."
+      },
+      {
+        course: "Probability & Stats",
+        questionEn: "If events A and B are independent, what is P(A ∩ B)?",
+        questionAr: "إذا كان الحدثان A و B مستقلين (Independent)، فما هو احتمال تقاطعهما P(A ∩ B)؟",
+        options: ["P(A) + P(B)", "P(A) * P(B)", "P(A) / P(B)", "0"],
+        answerIdx: 1,
+        explanationEn: "For independent events, the probability of both occurring together is the product P(A) * P(B).",
+        explanationAr: "للأحداث المستقلة، احتمال حدوثهما معاً يساوي حاصل ضرب الاحتمالين P(A) * P(B)."
+      }
+    ];
+
+    let currentQIdx = 0;
+    let selectedAnswers = {};
+
+    window.openExamSimulator = function() {
+      currentQIdx = 0;
+      selectedAnswers = {};
+      document.getElementById("simulator-modal").classList.remove("hidden");
+      renderSimQuestion();
+    };
+
+    function renderSimQuestion() {
+      const q = SIMULATOR_QUESTIONS[currentQIdx];
+      const container = document.getElementById("sim-content");
+      if (!container) return;
+
+      const userChoice = selectedAnswers[currentQIdx];
+      const isAnswered = userChoice !== undefined;
+
+      container.innerHTML = `
+        <div class="flex items-center justify-between text-xs text-slate-400">
+          <span class="px-2.5 py-1 rounded bg-slate-800 text-amber-300 font-bold">${q.course}</span>
+          <span>السؤال ${currentQIdx + 1} من ${SIMULATOR_QUESTIONS.length}</span>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+          <p class="text-sm font-bold text-white">${q.questionAr}</p>
+          <p class="text-xs text-slate-400 font-mono" dir="ltr">${q.questionEn}</p>
+        </div>
+
+        <div class="space-y-2">
+          ${q.options.map((opt, idx) => {
+            let optClass = "bg-slate-900 border-slate-800 hover:border-slate-700 text-slate-200";
+            if (isAnswered) {
+              if (idx === q.answerIdx) {
+                optClass = "bg-emerald-500/20 border-emerald-500 text-emerald-300 font-bold";
+              } else if (idx === userChoice) {
+                optClass = "bg-rose-500/20 border-rose-500 text-rose-300 font-bold";
+              } else {
+                optClass = "opacity-50 border-slate-800 text-slate-500";
+              }
+            }
+            return `
+              <button onclick="pickSimAnswer(${idx})" ${isAnswered ? 'disabled' : ''} 
+                      class="w-full text-right p-3 rounded-xl border text-xs font-semibold transition-all flex items-center justify-between ${optClass}">
+                <span>${opt}</span>
+                ${isAnswered && idx === q.answerIdx ? '<span>✓ صحيح</span>' : ''}
+                ${isAnswered && idx === userChoice && idx !== q.answerIdx ? '<span>✕ خطأ</span>' : ''}
+              </button>
+            `;
+          }).join("")}
+        </div>
+
+        ${isAnswered ? `
+          <div class="p-3.5 rounded-xl bg-slate-950 border border-purple-500/30 text-xs space-y-1 fade-in">
+            <span class="font-bold text-amber-400">💡 التفسير والشرح:</span>
+            <p class="text-slate-300 leading-relaxed">${q.explanationAr}</p>
+            <p class="text-slate-400 font-mono text-[11px]" dir="ltr">${q.explanationEn}</p>
+          </div>
+        ` : ''}
+
+        <div class="flex items-center justify-between pt-3 border-t border-slate-800">
+          <button onclick="prevSimQ()" ${currentQIdx === 0 ? 'disabled class="opacity-40 cursor-not-allowed text-xs text-slate-500"' : 'class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-200 hover:bg-slate-700"'}>
+            السابق
+          </button>
+          
+          ${currentQIdx < SIMULATOR_QUESTIONS.length - 1 ? `
+            <button onclick="nextSimQ()" class="px-5 py-2 rounded-xl text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white">
+              التالي ↗
+            </button>
+          ` : `
+            <button onclick="finishSim()" class="px-5 py-2 rounded-xl text-xs font-bold bg-emerald-500 text-black hover:bg-emerald-400">
+              إنهاء وعرض النتيجة 🎉
+            </button>
+          `}
+        </div>
+      `;
+    }
+
+    window.pickSimAnswer = function(idx) {
+      selectedAnswers[currentQIdx] = idx;
+      renderSimQuestion();
+    };
+
+    window.nextSimQ = function() {
+      if (currentQIdx < SIMULATOR_QUESTIONS.length - 1) {
+        currentQIdx++;
+        renderSimQuestion();
+      }
+    };
+
+    window.prevSimQ = function() {
+      if (currentQIdx > 0) {
+        currentQIdx--;
+        renderSimQuestion();
+      }
+    };
+
+    window.finishSim = function() {
+      let score = 0;
+      SIMULATOR_QUESTIONS.forEach((q, i) => {
+        if (selectedAnswers[i] === q.answerIdx) score++;
+      });
+      const pct = Math.round((score / SIMULATOR_QUESTIONS.length) * 100);
+
+      document.getElementById("sim-content").innerHTML = `
+        <div class="text-center py-8 space-y-3">
+          <div class="text-5xl animate-bounce">🏆</div>
+          <h3 class="text-2xl font-black text-white">نتيجتك: ${score} من ${SIMULATOR_QUESTIONS.length} (${pct}%)</h3>
+          <p class="text-xs text-slate-400">
+            ${pct >= 75 ? 'عاش جداً يا بطل! مستواك ممتاز وجاهز للميدتيرم 💪' : 'بداية جيدة! راجع كبسولات الميدتيرم وجرب الاختبار مرة تانية 🔥'}
+          </p>
+          <div class="pt-4 flex justify-center gap-2">
+            <button onclick="openExamSimulator()" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-purple-600 text-white">
+              إعادة الاختبار 🔄
+            </button>
+            <button onclick="document.getElementById('simulator-modal').classList.add('hidden')" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-300">
+              إغلاق
+            </button>
+          </div>
+        </div>
+      `;
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة المادة | Basmagly بصمجلي</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="selection:bg-amber-500 selection:text-black">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="sticky top-0 z-40 w-full glass-panel border-b border-slate-300 dark:border-slate-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Back & Brand -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="p-2 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 transition-all flex items-center gap-1.5 text-xs font-bold" title="الرجوع للرئيسية">
+          <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <span class="hidden sm:inline">الرئيسية</span>
+        </a>
+
+        <div class="h-5 w-px bg-slate-300 dark:bg-slate-800"></div>
+
+        <a href="index.html" class="flex items-center gap-2 group">
+          <span class="text-lg font-black tracking-tight group-hover:text-amber-500 transition-colors">Basmagly</span>
+          <span class="text-[10px] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-600 dark:text-amber-300 font-bold border border-amber-500/30">بصمجلي</span>
+        </a>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="flex items-center gap-2.5">
+        <!-- Live 12H Clock -->
+        <div class="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-200 dark:bg-slate-800 text-xs font-bold text-amber-600 dark:text-amber-300 border border-slate-300 dark:border-slate-700">
+          <span>🕒</span>
+          <span id="subj-clock">12:00 ص</span>
+        </div>
+
+        <!-- Pomodoro Header Pill -->
+        <button id="timer-header-trigger" class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all">
+          <span>⏱️</span>
+          <span id="timer-display">25:00</span>
+        </button>
+
+        <!-- Theme Switcher -->
+        <div class="flex items-center p-1 rounded-xl bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs font-bold">
+          <button data-theme-btn="light" class="px-2.5 py-1 rounded-lg transition-all" title="الوضع الفاتح">☀️</button>
+          <button data-theme-btn="sepia" class="px-2.5 py-1 rounded-lg transition-all" title="وضع القراءة">📖</button>
+          <button data-theme-btn="dark" class="px-2.5 py-1 rounded-lg transition-all" title="الوضع الداكن">🌙</button>
+        </div>
+
+        <!-- Open Drive Folder -->
+        <a id="subj-drive-link" href="#" target="_blank" class="p-2 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/30 transition-all text-xs font-bold flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          <span class="hidden md:inline">فولدر الدرايف</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Subject Hero Header -->
+    <section class="glass-panel rounded-3xl p-6 md:p-8 border border-slate-300 dark:border-slate-800 relative overflow-hidden">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
+        
+        <!-- Info & Badges -->
+        <div class="flex items-start gap-4">
+          <div id="subj-icon-box" class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shadow-lg border shrink-0">
+            💻
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+              <span id="subj-code-badge" class="px-2.5 py-0.5 rounded-md text-xs font-bold border">CS213</span>
+              <span class="text-xs text-slate-500 font-medium">الفرقة الثانية · الترم الأول</span>
+            </div>
+            <h1 id="subj-title-ar" class="text-2xl md:text-3xl font-black">Data Structure</h1>
+            <p id="subj-title-en" class="text-sm font-semibold text-slate-500 mt-0.5">هياكل البيانات</p>
+            <p id="subj-description" class="text-xs text-slate-500 dark:text-slate-400 mt-2 max-w-2xl leading-relaxed"></p>
+          </div>
+        </div>
+
+        <!-- Panic Switch & Progress Box -->
+        <div class="w-full lg:w-80 flex flex-col gap-3">
+          <!-- Panic Mode Toggle Switch -->
+          <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between gap-3 shadow-inner">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-amber-700 dark:text-amber-400 font-black text-sm">طوارئ ليلة الامتحان ⚡</span>
+              </div>
+              <p class="text-[11px] text-amber-700/80 dark:text-amber-200/80">كبسولات، شيتات محلولة، وأهم قوانين فقط</p>
+            </div>
+            <label class="switch shrink-0">
+              <input type="checkbox" id="panic-mode-toggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Subject Progress -->
+          <div class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-xs">
+            <div class="flex justify-between items-center font-bold mb-1.5">
+              <span>نسبة إنجاز المادة</span>
+              <div class="flex items-center gap-1">
+                <span id="subj-progress-percentage" class="text-amber-600 dark:text-amber-400">0%</span>
+                <span id="subj-progress-count" class="text-slate-500 font-normal text-[11px]">(0 من 0)</span>
+              </div>
+            </div>
+            <div class="w-full h-2 bg-slate-300 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div id="subj-progress-bar" class="h-full rounded-full bg-gradient-to-r from-amber-500 to-rose-500 transition-all duration-500" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Panic Mode Alert Banner -->
+    <div id="panic-mode-banner" class="hidden rounded-2xl p-4 bg-gradient-to-r from-amber-500/20 via-rose-500/20 to-amber-500/20 border-2 border-amber-500/60 shadow-xl fade-in">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl animate-bounce">🚨</span>
+        <div>
+          <h3 class="text-sm font-black text-amber-800 dark:text-amber-300">أنت الآن في وضع "طوارئ ليلة الامتحان (بصمجلي السريع)"</h3>
+          <p class="text-xs text-amber-900/90 dark:text-amber-100/90 mt-0.5">تم تصفية وإخفاء السلايدات الطويلة، والتركيز على كبسولات الميدتيرم، القوانين المجمعة، والشيتات المحلولة لإنقاذ الوقت!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layout: Tabs & Content + Scratchpad -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- Main Column: Tabs & Content -->
+      <div class="lg:col-span-2 space-y-5">
+        
+        <!-- Tabs Header Bar -->
+        <div class="flex items-center justify-between gap-2 overflow-x-auto pb-1 border-b border-slate-300 dark:border-slate-800">
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button data-subject-tab="lectures" class="px-4 py-2 rounded-xl text-xs font-bold border border-transparent transition-all active-subject-tab">📘 المحاضرات</button>
+            <button data-subject-tab="sections" class="px-4 py-2 rounded-xl text-xs font-bold border border-transparent transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-200">💻 السكاشن والعملي</button>
+            <button data-subject-tab="sheets" class="px-4 py-2 rounded-xl text-xs font-bold border border-transparent transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-200">📝 الشيتات</button>
+            <button data-subject-tab="basmaga" class="px-4 py-2 rounded-xl text-xs font-bold border border-transparent transition-all text-amber-600 dark:text-amber-400 hover:bg-amber-500/10">🔥 كبسولة البصمجة</button>
+            <button data-subject-tab="videos" class="px-4 py-2 rounded-xl text-xs font-bold border border-transparent transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-200">🎥 شروحات الفيديو</button>
+            <button data-subject-tab="exams" class="px-4 py-2 rounded-xl text-xs font-bold border border-transparent transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-200">📂 الامتحانات</button>
+          </div>
+        </div>
+
+        <!-- In-Subject Search -->
+        <div class="relative">
+          <input type="text" id="subject-search-input" placeholder="تصفية سريعة داخل ملفات المادة..." 
+                 class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-xl px-4 py-2 pl-9 text-xs font-medium focus:outline-none focus:border-amber-500">
+          <span class="absolute left-3 top-2.5 text-slate-400 text-xs">🔍</span>
+        </div>
+
+        <!-- Files List Container -->
+        <div id="subject-tab-content" class="space-y-3">
+          <!-- Rendered dynamically by subject.js -->
+        </div>
+
+      </div>
+
+      <!-- Side Column: Auto-saved Scratchpad -->
+      <div class="space-y-5">
+        
+        <div class="glass-panel rounded-3xl p-5 border border-slate-300 dark:border-slate-800 flex flex-col h-[520px]">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">📝</span>
+              <div>
+                <h3 class="text-sm font-bold">كشكول الملاحظات والتنبيهات</h3>
+                <p class="text-[10px] text-slate-500">سجل أسئلة الدكتور المهمة وملاحظات المذاكرة</p>
+              </div>
+            </div>
+            <span id="scratchpad-save-status" class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">محفوظ تلقائياً ✓</span>
+          </div>
+
+          <textarea id="scratchpad-textarea" 
+                    placeholder="اكتب هنا كل تنبيهات الدكتور، القوانين المهمة، المسائل المتوقعة للميدتيرم... سيتم حفظها تلقائياً بدون الحاجة لزر حفظ."
+                    class="w-full flex-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/80 rounded-2xl p-4 text-xs font-medium focus:outline-none focus:border-amber-500 resize-none leading-relaxed"></textarea>
+
+          <div class="mt-3 text-[10px] text-slate-500 flex items-center justify-between">
+            <span>💾 يُحفظ في المتصفح تلقائياً</span>
+            <span>يدعم النقل مع الـ Backup</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==================== IN-SITE STUDY HUB MODAL (READ + AI + QUIZ + NOTES) ==================== -->
+  <div id="study-hub-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/80 backdrop-blur-md overflow-y-auto">
+    <div class="glass-panel w-full max-w-4xl rounded-3xl p-5 sm:p-7 border-2 border-purple-500/40 shadow-2xl relative space-y-4 my-6 max-h-[92vh] flex flex-col">
+      
+      <!-- Top Bar: Close & Header -->
+      <div class="flex items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3 shrink-0">
+        <div class="flex items-center gap-3 min-w-0">
+          <div id="subj-sh-icon" class="w-11 h-11 rounded-2xl flex items-center justify-center text-2xl shadow shrink-0">📘</div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <span id="subj-sh-course-badge" class="text-[10px] font-bold px-2 py-0.5 rounded border"></span>
+              <h3 id="subj-sh-title" class="text-base sm:text-lg font-bold truncate"></h3>
+            </div>
+            <p id="subj-sh-course-name" class="text-xs text-slate-500 truncate"></p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <!-- Direct Google Drive Link -->
+          <a id="subj-sh-drive-btn" href="#" target="_blank" rel="noopener noreferrer" 
+             class="px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow transition-all flex items-center gap-1.5"
+             title="فتح الملف الأصلي على جوجل درايف">
+            <span>فتح في Google Drive ↗</span>
+          </a>
+
+          <button onclick="closeStudyHub()" class="p-2 rounded-xl text-slate-400 hover:text-black dark:hover:text-white text-lg font-bold">✕</button>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs: In-site Read, AI Basmaga, Quiz, Notes -->
+      <div class="flex items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2 text-xs font-bold overflow-x-auto shrink-0">
+        <div class="flex items-center gap-2">
+          <button onclick="setStudyHubTab('read')" id="subj-sh-tab-read" class="px-3.5 py-2 rounded-xl bg-purple-600 text-white font-bold transition-all flex items-center gap-1.5 shadow">
+            <span>📖</span>
+            <span>محتوى وشرح المحاضرة</span>
+          </button>
+          <button onclick="setStudyHubTab('ai')" id="subj-sh-tab-ai" class="px-3.5 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 font-bold transition-all flex items-center gap-1.5">
+            <span>✨</span>
+            <span>بصمجة AI (الكبسولة)</span>
+          </button>
+          <button onclick="setStudyHubTab('quiz')" id="subj-sh-tab-quiz" class="px-3.5 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 font-bold transition-all flex items-center gap-1.5">
+            <span>🎯</span>
+            <span>كويز سريع للتدريب</span>
+          </button>
+          <button onclick="setStudyHubTab('notes')" id="subj-sh-tab-notes" class="px-3.5 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 font-bold transition-all flex items-center gap-1.5">
+            <span>📝</span>
+            <span>كشكول الملاحظات</span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <label class="flex items-center gap-1.5 cursor-pointer text-xs font-bold px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <input type="checkbox" id="subj-sh-done-checkbox" onchange="toggleCurrentItemDone()" class="w-4 h-4 accent-emerald-500 cursor-pointer">
+            <span class="text-slate-700 dark:text-slate-300">تمت المذاكرة بنجاح ✓</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="flex-1 overflow-y-auto pr-1 space-y-4">
+        
+        <!-- Tab 1: In-Site Reader -->
+        <div id="subj-sh-panel-read" class="space-y-4">
+          <div class="p-3.5 rounded-2xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60 flex items-center justify-between text-xs text-blue-900 dark:text-blue-200">
+            <span class="font-medium">💡 يتم عرض محتوى وشرح المحاضرة الأساسي مباشرة داخل الموقع لتيسير المذاكرة السريعة.</span>
+            <a id="subj-sh-read-drive-link" href="#" target="_blank" rel="noopener noreferrer" class="font-bold underline text-blue-700 dark:text-blue-300 hover:text-blue-600 shrink-0">
+              فتح ملف الـ PDF الأصلي في درايف ↗
+            </a>
+          </div>
+
+          <div id="subj-sh-read-text" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm leading-relaxed space-y-3 font-medium">
+            <!-- Reader content loaded here -->
+          </div>
+
+          <!-- Document Embedded View Box -->
+          <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-xs font-bold">
+              <span>📄 الملف في جوجل درايف (معاينة مباشرة):</span>
+              <a id="subj-sh-frame-btn" href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">
+                فتح في نافذة مستقلة ↗
+              </a>
+            </div>
+            <div class="h-64 rounded-xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 flex flex-col items-center justify-center p-4 text-center">
+              <span class="text-3xl mb-2">📑</span>
+              <p class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="subj-sh-frame-title">الملف جاهز للقراءة المباشرة</p>
+              <p class="text-[11px] text-slate-500 mb-3">يمكنك قراءة ملخص المحاضرة والشرح أعلاه أو الانتقال للملف الكامل على درايف.</p>
+              <a id="subj-sh-frame-btn-2" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow transition-all">
+                فتح الملف بالكامل على Google Drive ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: AI Basmaga -->
+        <div id="subj-sh-panel-ai" class="hidden space-y-3.5 text-xs leading-relaxed">
+          <div id="subj-sh-ai-body" class="space-y-3.5">
+            <!-- Loaded by JS -->
+          </div>
+        </div>
+
+        <!-- Tab 3: Interactive Quiz -->
+        <div id="subj-sh-panel-quiz" class="hidden space-y-4">
+          <div class="p-3.5 rounded-2xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800/60 text-xs text-purple-900 dark:text-purple-200 font-medium">
+            🎯 اختبر مدى استيعابك للمحاضرة في 60 ثانية — اختر الإجابة وشاهد التفسير الفوري!
+          </div>
+
+          <div id="subj-sh-quiz-body" class="space-y-3">
+            <!-- Quiz questions loaded by JS -->
+          </div>
+        </div>
+
+        <!-- Tab 4: Interactive Notes -->
+        <div id="subj-sh-panel-notes" class="hidden space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold">📝 ملاحظاتك الخاصة بهذه المحاضرة:</span>
+            <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">محفوظ تلقائياً في المتصفح ✓</span>
+          </div>
+          <textarea id="subj-sh-notes-textarea" rows="8" placeholder="اكتب ملاحظاتك، إضافات الدكتور، الأسئلة التي تريد مراجعتها..." 
+                    class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-2xl p-4 text-xs focus:outline-none focus:border-purple-500 font-medium leading-relaxed"></textarea>
+        </div>
+
+      </div>
+
+      <!-- Footer: Prev / Next Navigation & Action -->
+      <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3 shrink-0">
+        <button id="subj-sh-prev-btn" onclick="navigateStudyItem(-1)" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
+          <span>⬅️ المحاضرة السابقة</span>
+        </button>
+
+        <button id="subj-sh-copy-notes-btn" onclick="copyAIToNotes()" class="hidden px-4 py-2 rounded-xl font-bold text-xs bg-amber-500 hover:bg-amber-400 text-black shadow transition-all">
+          <span>نسخ الملخص لكشكول الملاحظات 📝</span>
+        </button>
+
+        <button id="subj-sh-next-btn" onclick="navigateStudyItem(1)" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
+          <span>المحاضرة التالية ➡️</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/ai-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/subject.js"></script>
+
+  <script>
+    // 12h clock
+    function updateSubjClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const ampm = hours >= 12 ? 'م' : 'ص';
+      hours = hours % 12 || 12;
+      const el = document.getElementById('subj-clock');
+      if (el) el.textContent = `${hours}:${minutes} ${ampm}`;
+    }
+    setInterval(updateSubjClock, 1000);
+    updateSubjClock();
+  </script>
+</body>
+</html>
